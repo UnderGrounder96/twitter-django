@@ -16,7 +16,7 @@ class TestsForms(TestCase):
       'password2': 'dummypass1234',
     })
     self.assertTrue(self.form.is_valid())
-    self.assertEqual(len(self.form.errors), 0)
+    self.assertEqual(str(self.form.save()), 'myusername')
 
   def test_user_register_form_blank(self):
     self.form = UserRegisterForm(data={})
@@ -24,12 +24,13 @@ class TestsForms(TestCase):
     self.assertEqual(len(self.form.errors), 4)
 
   def test_user_update_form_valid(self):
+    self.test_user_register_form_valid()
     self.form = UserUpdateForm(data={
       'username': 'myusername123',
       'email': 'notmy@email.com',
     })
     self.assertTrue(self.form.is_valid())
-    self.assertEqual(len(self.form.errors), 0)
+    self.assertEqual(str(self.form.save()), 'myusername123')
 
   def test_user_update_form_blank(self):
     self.form = UserUpdateForm(data={})
@@ -44,8 +45,10 @@ class TestsForms(TestCase):
 
   # BUG: test_profile_update_form_blank() would be a valid test
   # becasue data["image"] is only invalid when the file is not an image
+  # also p_form.save() returns an django.db.utils.IntegrityError
   def test_profile_update_form_valid(self):
     image = self.create_image()
-    self.form = ProfileUpdateForm({'image': image})
-    self.assertTrue(self.form.is_valid())
-    self.assertEqual(len(self.form.errors), 0)
+    self.test_user_update_form_valid()
+    self.p_form = ProfileUpdateForm(data={'image': image})
+    self.assertTrue(self.p_form.is_valid())
+    self.assertEqual(len(self.p_form.errors), 0)
