@@ -34,7 +34,13 @@ class TestModels(TestCase):
     image = self.create_image()
     self.user.profile.image = self.profile.image = image
     self.user.profile.save(); self.profile.save()
-    self.assertEqual(str(self.profile.image), self.image_path(image.name))
-    self.assertEqual(str(self.user.profile.image), self.image_path(image.name))
+    self.assertEqual(
+      str(self.profile.image),
+      self.image_path(image.name)
+    )
+    self.assertEqual(
+      str(self.user.profile.image),
+      self.image_path(image.name)
+    )
     if Path('./media/'+self.image_path(image.name)).exists():
       Path('./media/'+self.image_path(image.name)).unlink()

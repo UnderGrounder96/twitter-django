@@ -23,18 +23,26 @@ class TestViews(TestCase):
     self.assertTemplateUsed(self.response, 'users/register.htm')
 
   def test_register_POST_valid(self):
-    self.response = self.client.post(self.register_url, {
-      'username': 'myusername',
-      'email': 'my@email.com',
-      'password1': 'dummypass1234',
-      'password2': 'dummypass1234'
-    })
+    self.response = self.client.post(
+      self.register_url,
+      {
+        'username': 'myusername',
+        'email': 'my@email.com',
+        'password1': 'dummypass1234',
+        'password2': 'dummypass1234'
+      }
+    )
     self.assertEqual(self.response.status_code, 302)
     self.assertRedirects(self.response, '/login/')
 
   def test_register_POST_and_login(self):
     self.test_register_POST_valid()
-    self.assertTrue(self.client.login(username='myusername', password='dummypass1234'))
+    self.assertTrue(
+      self.client.login(
+        username='myusername',
+        password='dummypass1234'
+      )
+    )
 
   def test_profile_GET_not_logged_in(self):
     self.response = self.client.get(self.profile_url)
@@ -56,11 +64,14 @@ class TestViews(TestCase):
   def test_profile_POST_alter(self):
     image = self.create_image()
     self.test_profile_GET_logged_in()
-    self.response = self.client.post(self.profile_url, {
-      'username': 'myusernamex',
-      'email': 'Notmy@email.com',
-      'image': image
-    })
+    self.response = self.client.post(
+      self.profile_url,
+      {
+        'username': 'myusernamex',
+        'email': 'Notmy@email.com',
+        'image': image
+      }
+    )
     self.assertEqual(self.response.status_code, 302)
     self.assertRedirects(self.response, '/profile/')
     self.response = self.client.get(self.profile_url)
