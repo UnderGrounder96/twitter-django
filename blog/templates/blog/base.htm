@@ -52,6 +52,7 @@
         <!-- Navbar Right Side -->
         <div class="navbar-nav ml-auto">
           {% if user.is_authenticated %}
+            <a class="nav-item nav-link text-primary" href="{% url 'post-create' %}">New Post</a>
             <a class="nav-item nav-link text-body" href="{% url 'profile' %}">Profile</a>
             <a class="nav-item nav-link text-body" href="{% url 'logout' %}">Logout</a>
           {% else %}
