@@ -6,7 +6,7 @@
       src="{{ object.author.profile.image.url }}" />
     <div class="media-body">
       <div class="article-metadata">
-        <a class="mr-2" href="#">
+        <a class="mr-2" href="{% url 'user-posts' post.author.username %}">
           {{ object.author }}
         </a>
         <small class="text-muted">
