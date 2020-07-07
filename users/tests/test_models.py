@@ -1,6 +1,7 @@
+import os
+import boto3
 from PIL import Image
 from io import BytesIO
-from pathlib import Path
 from django.test import TestCase
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import InMemoryUploadedFile
@@ -32,7 +33,7 @@ class TestModels(TestCase):
 
   def test_profile_alter(self):
     image = self.create_image()
-    self.user.profile.image = self.profile.image = image
+    self.user.profile.image = self.profile.image = self.image_path(image.name)
     self.user.profile.save(); self.profile.save()
     self.assertEqual(
       str(self.profile.image),
@@ -42,5 +43,8 @@ class TestModels(TestCase):
       str(self.user.profile.image),
       self.image_path(image.name)
     )
-    if Path('./media/'+self.image_path(image.name)).exists():
-      Path('./media/'+self.image_path(image.name)).unlink()
+    s3 = boto3.resource('s3')
+    s3.Object(
+      os.getenv('AWS_STORAGE_BUCKET_NAME'),
+      self.image_path(image.name)
+    ).delete()

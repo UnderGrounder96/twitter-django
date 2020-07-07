@@ -25,7 +25,7 @@ cover/
 # Django stuff:
 *.log
 local_settings.py
-#db.sqlite3
+db.sqlite3
 db.sqlite3-journal
 
 # Environments
@@ -33,4 +33,3 @@ db.sqlite3-journal
 
 # Private
 django_cmd
-

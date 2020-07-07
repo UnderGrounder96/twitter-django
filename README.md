@@ -2,6 +2,8 @@
 
 Project created under Linux Ubuntu 64-bit using Python 3.8, pip 20.1.1 and Django 3.0.7
 
+Currently live at: https://twitter-django-app.herokuapp.com/
+
 ## Tests ##
 
 Perform system packages update and upgrade:<br />
@@ -61,6 +63,20 @@ $ python manage.py runserver
 ```
 
 Open [localhost:8000](http://localhost:8000) in a browser.
+
+## Versioning ##
+
+Version 1.5 - Current version
+
+Version 5.0 (TBA) - Moderation algorithms
+
+## Author ##
+
+Lucio Afonso
+
+## License ##
+
+This project is licensed under the GPL License - see the LICENSE.md file for details
 
 ## Acknowledgments ##
 Tutorials:

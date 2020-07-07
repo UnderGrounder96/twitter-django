@@ -1,6 +1,7 @@
+import os
+import boto3
 from PIL import Image
 from io import BytesIO
-from pathlib import Path
 from django.urls import reverse
 from django.test import TestCase, Client
 from django.core.files.uploadedfile import InMemoryUploadedFile
@@ -77,5 +78,8 @@ class TestViews(TestCase):
     self.response = self.client.get(self.profile_url)
     self.assertEqual(self.response.status_code, 200)
     self.assertTemplateUsed(self.response, 'users/profile.htm')
-    if Path('./media/profile_pics/'+image.name).exists():
-      Path('./media/profile_pics/'+image.name).unlink()
+    s3 = boto3.resource('s3')
+    s3.Object(
+      os.getenv('AWS_STORAGE_BUCKET_NAME'),
+      'profile_pics/'+image.name
+    ).delete()
