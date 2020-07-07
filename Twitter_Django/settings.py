@@ -35,7 +35,6 @@ ALLOWED_HOSTS = ['twitter-django-app.herokuapp.com', 'localhost']
 # Application definition
 
 INSTALLED_APPS = [
-  'storages',
   'crispy_forms',
   'blog.apps.BlogConfig',
   'users.apps.UsersConfig',
@@ -154,4 +153,5 @@ AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 if DEBUG == 'False':
+  INSTALLED_APPS += 'storages'
   django_heroku.settings(locals())
