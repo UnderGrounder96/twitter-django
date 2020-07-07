@@ -43,8 +43,8 @@ class TestModels(TestCase):
       str(self.user.profile.image),
       self.image_path(image.name)
     )
-    s3 = boto3.resource('s3')
-    s3.Object(
-      os.getenv('AWS_STORAGE_BUCKET_NAME'),
-      self.image_path(image.name)
-    ).delete()
+    # s3 = boto3.resource('s3')
+    # s3.Object(
+    #   os.getenv('AWS_STORAGE_BUCKET_NAME'),
+    #   self.image_path(image.name)
+    # ).delete()

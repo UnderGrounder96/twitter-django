@@ -78,8 +78,8 @@ class TestViews(TestCase):
     self.response = self.client.get(self.profile_url)
     self.assertEqual(self.response.status_code, 200)
     self.assertTemplateUsed(self.response, 'users/profile.htm')
-    s3 = boto3.resource('s3')
-    s3.Object(
-      os.getenv('AWS_STORAGE_BUCKET_NAME'),
-      'profile_pics/'+image.name
-    ).delete()
+    # s3 = boto3.resource('s3')
+    # s3.Object(
+    #   os.getenv('AWS_STORAGE_BUCKET_NAME'),
+    #   'profile_pics/'+image.name
+    # ).delete()
