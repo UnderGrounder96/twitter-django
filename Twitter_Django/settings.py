@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import django_heroku
 from dotenv import load_dotenv
 
 load_dotenv(verbose=True)
@@ -28,7 +29,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", "e(4@z*3&99o4o((1mv3x=_lkcte=$$*#d&(y4+^a6e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['twitter-django-app.herokuapp.com']
 
 
 # Application definition
@@ -125,6 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -152,3 +154,5 @@ AWS_DEFAULT_ACL = None
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 S3_USE_SIGV4 = True
+
+django_heroku.settings(locals())
