@@ -16,16 +16,33 @@ body {
 }
 
 @-webkit-keyframes animatebottom {
-  from { bottom:-100px; opacity:0 }
-  to { bottom:0px; opacity:1 }
+  from {
+    bottom: -100px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0px;
+    opacity: 1;
+  }
 }
 
 @keyframes animatebottom {
-  from{ bottom:-100px; opacity:0 }
-  to{ bottom:0; opacity:1 }
+  from {
+    bottom: -100px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0;
+    opacity: 1;
+  }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #444444;
 }
 
@@ -34,7 +51,7 @@ ul {
 }
 
 #root {
-/* Needs work
+  /* Needs work
   height: 100vh;
 */
 }
@@ -91,7 +108,7 @@ a.article-title:hover {
 .article-metadata {
   padding-bottom: 1px;
   margin-bottom: 4px;
-  border-bottom: 1px solid #e3e3e3
+  border-bottom: 1px solid #e3e3e3;
 }
 
 .article-metadata a:hover {
@@ -123,5 +140,6 @@ a.article-title:hover {
   width: 100%;
   height: 100%;
   z-index: 9999;
-  background: url("../images/spinner.e19943c224db.gif") no-repeat scroll center #fff;
+  background: url("../images/spinner.e19943c224db.gif") no-repeat scroll center
+    #fff;
 }

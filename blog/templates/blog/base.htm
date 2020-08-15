@@ -1,146 +1,167 @@
 {% load static %}
 
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  {% if title %}
+  <head>
+    {% if title %}
     <title>{{ title }} - Twitter Django</title>
-  {% else %}
+    {% else %}
     <title>Twitter Django</title>
-  {% endif %}
+    {% endif %}
 
-  <meta name="robots" content="noindex" />
-  <meta name="author" content="Lucio Afonso" />
-  <meta name="description" content="Twitter_Django" />
-  <meta name="keywords" content="social network, django twitter" />
+    <meta name="robots" content="noindex" />
+    <meta name="author" content="Lucio Afonso" />
+    <meta name="description" content="Twitter_Django" />
+    <meta name="keywords" content="social network, django twitter" />
 
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
 
-  <link rel="shortcut ico" href="{% static 'blog/images/favicon.ico' %}"/>
-  <link rel="stylesheet" href="{% static 'blog/css/main.css' %}"/>
+    <link rel="shortcut ico" href="{% static 'blog/images/favicon.ico' %}" />
+    <link rel="stylesheet" href="{% static 'blog/css/main.css' %}" />
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-</head>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
 
-<body class="container">
-  <noscript> Please switch to a browser with JavaScript turned on!</noscript>
+  <body class="container">
+    <noscript> Please switch to a browser with JavaScript turned on!</noscript>
 
-  <div id="root" class="shadow my-4">
-  <header class="site-header">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-steel">
-      <a class="navbar-brand" href="{% url 'blog-home' %}">
-        <img class="d-inline-flex" loading="lazy" width="50px"
-          src="{% static 'blog/images/logo.svg' %}" alt="Logo">
-      </a>
+    <div id="root" class="shadow my-4">
+      <header class="site-header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-steel">
+          <a class="navbar-brand" href="{% url 'blog-home' %}">
+            <img
+              class="d-inline-flex"
+              loading="lazy"
+              width="50px"
+              src="{% static 'blog/images/logo.svg' %}"
+              alt="Logo"
+            />
+          </a>
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse"
-        data-target="#navbarToggle" aria-controls="navbarToggle"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarToggle"
+            aria-controls="navbarToggle"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-      <div class="collapse navbar-collapse" id="navbarToggle">
-        <!-- Navbar Right Side -->
-        <div class="navbar-nav ml-auto">
-          {% if user.is_authenticated %}
-            <a class="nav-item nav-link text-primary" href="{% url 'post-create' %}">New Post</a>
-            <a class="nav-item nav-link text-body" href="{% url 'profile' %}">Profile</a>
-            <a class="nav-item nav-link text-body" href="{% url 'logout' %}">Logout</a>
-          {% else %}
-            <a class="nav-item nav-link text-body" href="{% url 'login' %}">Login</a>
-            <a class="nav-item nav-link text-body" href="{% url 'register' %}">Register</a>
-          {% endif %}
-          <i class="nav-item nav-link text-body fa fa-adjust"
-            style="font-size:22px" aria-hidden="true" id="dark"></i>
-        </div>
-      </div>
-    </nav>
-  </header>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav ml-auto">
+              {% if user.is_authenticated %}
+              <a
+                class="nav-item nav-link text-primary"
+                href="{% url 'post-create' %}"
+                >New Post</a
+              >
+              <a class="nav-item nav-link text-body" href="{% url 'profile' %}"
+                >Profile</a
+              >
+              <a class="nav-item nav-link text-body" href="{% url 'logout' %}"
+                >Logout</a
+              >
+              {% else %}
+              <a class="nav-item nav-link text-body" href="{% url 'login' %}"
+                >Login</a
+              >
+              <a class="nav-item nav-link text-body" href="{% url 'register' %}"
+                >Register</a
+              >
+              {% endif %}
+              <i
+                class="nav-item nav-link text-body fa fa-adjust"
+                style="font-size: 22px;"
+                aria-hidden="true"
+                id="dark"
+              ></i>
+            </div>
+          </div>
+        </nav>
+      </header>
 
-  <main role="main" class="container my-3">
-    <div class="row">
-      <div class="col-md-9">
-        {% if messages %}
-          {% for message in messages%}
+      <main role="main" class="container my-3">
+        <div class="row">
+          <div class="col-md-9">
+            {% if messages %} {% for message in messages%}
             <div class="alert alert-{{ message.tags }}">
               {{ message }}
             </div>
-          {% endfor %}
-        {% endif %}
-        
-        {% block content %}
-        {% endblock %}
-      </div>
+            {% endfor %} {% endif %} {% block content %} {% endblock %}
+          </div>
 
-      <div class="col-md-3">
-        <div class="content-section">
-          <h4>Trends:</h4>
-          <p class='text-muted'>
-            <ul class="list-unstyled">
-              <li class="py-1">
-                <a class="text-decoration-none" href="#">Latest Posts</a>
-              </li>
-              <li class="py-1">
-                <a class="text-decoration-none" href="#">Announcements</a>
-              </li>
-              <li class="py-1">
-                <a class="text-decoration-none" href="#">Calendars</a>
-              </li>
-            </ul>
-          </p>
+          <div class="col-md-3">
+            <div class="content-section">
+              <h4>Trends:</h4>
+              <ul class="list-unstyled text-muted">
+                <li class="py-1">
+                  <a class="text-decoration-none" href="#">Latest Posts</a>
+                </li>
+                <li class="py-1">
+                  <a class="text-decoration-none" href="#">Announcements</a>
+                </li>
+                <li class="py-1">
+                  <a class="text-decoration-none" href="#">Calendars</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
+      </main>
+
+      <footer class="container page-footer py-2">
+        <hr />
+        <ul class="row text-center list-unstyled mt-2 list-inline">
+          <li class="col list-inline-item">
+            <a class="text-decoration-none" href="#">Policy</a>
+          </li>
+
+          <li class="col list-inline-item">
+            <a class="text-decoration-none" href="{% url 'blog-about' %}"
+              >About</a
+            >
+          </li>
+
+          <li class="col list-inline-item">
+            <a class="text-decoration-none" href="{% url 'blog-terms' %}"
+              >Terms of use</a
+            >
+          </li>
+        </ul>
+
+        <div class="footer-copyright pb-3 text-center">
+          &copy; {% now 'Y' %} -
+          <strong>Twitter Django</strong>. All rights reserved.
+        </div>
+      </footer>
     </div>
-  </main>
 
-  <footer class="container page-footer py-2">
-  <hr />
-  <ul class="row text-center list-unstyled mt-2 list-inline">
-    <li class="col list-inline-item">
-      <a class="text-decoration-none" href="#">Policy</a>
-    </li>
+    <div class="spinner"></div>
 
-    <li class="col list-inline-item">
-      <a class="text-decoration-none" href="{% url 'blog-about' %}">About</a>
-    </li>
+    <!-- jQuery, Popper and Bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-    <li class="col list-inline-item">
-      <a class="text-decoration-none" href="{% url 'blog-terms' %}">Terms of use</a>
-    </li>
-  </ul>
-
-  <div class="footer-copyright pb-3 text-center">
-    &copy; {% now 'Y' %} -
-    <strong>Twitter Django</strong>.
-    All rights reserved.
-  </div>
-  </footer>
-  </div>
-
-  <div class="spinner"></div>
-
-  <!-- jQuery, Popper and Bootstrap -->
-  <script
-    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-  </script>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
-  </script>
-  <script
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js">
-  </script>
-
-  <script
-    src="{% static 'blog/js/main.js' %}">
-  </script>
-</body>
+    <script src="{% static 'blog/js/main.js' %}"></script>
+  </body>
 </html>
