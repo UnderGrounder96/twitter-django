@@ -1,5 +1,5 @@
 import os
-import boto3
+# import boto3
 from PIL import Image
 from io import BytesIO
 from django.test import TestCase
@@ -43,8 +43,8 @@ class TestModels(TestCase):
       str(self.user.profile.image),
       self.image_path(image.name)
     )
-    s3 = boto3.resource('s3')
-    s3.Object(
-      os.getenv('AWS_STORAGE_BUCKET_NAME'),
-      self.image_path(image.name)
-    ).delete()
+    # s3 = boto3.resource('s3')
+    # s3.Object(
+    #   os.getenv('AWS_STORAGE_BUCKET_NAME'),
+    #   self.image_path(image.name)
+    # ).delete()

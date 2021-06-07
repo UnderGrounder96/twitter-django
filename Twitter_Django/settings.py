@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import django_heroku
 from dotenv import load_dotenv
 
 load_dotenv(verbose=True)
@@ -29,7 +28,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", "e(4@z*3&99o4o((1mv3x=_lkcte=$$*#d&(y4+^a6e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG")
 
-ALLOWED_HOSTS = ['twitter-django-app.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['twitter-django-app.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -145,13 +144,14 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASS')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-S3_USE_SIGV4 = True
-AWS_DEFAULT_ACL = None
-AWS_S3_FILE_OVERWRITE = False
-AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# S3_USE_SIGV4 = True
+# AWS_DEFAULT_ACL = None
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 if DEBUG == 'False':
+  import django_heroku
   django_heroku.settings(locals())
