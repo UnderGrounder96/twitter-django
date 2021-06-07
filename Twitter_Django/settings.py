@@ -152,6 +152,6 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-if DEBUG == 'False':
-  import django_heroku
-  django_heroku.settings(locals())
+# if DEBUG == 'False':
+#   import django_heroku
+#   django_heroku.settings(locals())
