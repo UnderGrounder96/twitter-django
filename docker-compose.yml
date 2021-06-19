@@ -1,0 +1,17 @@
+---
+# Sample run #1: docker-compose up -d
+# Sample run #2: docker exec -it -u root container_id bash
+version: "3.9" # optional since v1.27.0
+services:
+  django:
+    image: ubuntu:18.04
+    container_name: twitter-django
+    ports:
+      - "${PORT}:${PORT}"
+    working_dir: /app
+    volumes:
+      - ".:/app"
+    command: bash docker-entrypoint.sh
+    environment:
+      - PORT=${PORT}
+    restart: unless-stopped
