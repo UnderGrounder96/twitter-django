@@ -6,7 +6,7 @@ Project created under Linux Ubuntu 64-bit using Python 3.8, pip 20.1.1 and Djang
 
 ## Deployment (baremetal)
 
-Install [python3.6](https://www.python.org/downloads/) and execute the commands:
+Install [python3.8](https://www.python.org/downloads/) and execute the commands:
 
 ```
 $ python3 -m venv venv
